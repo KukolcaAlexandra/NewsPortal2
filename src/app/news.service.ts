@@ -15,8 +15,7 @@ export class NewsService {
   public updatedSourceName: EventEmitter<string> = new EventEmitter();
   public updatedCurrentNews: EventEmitter<INews> = new EventEmitter();
   selectedSource: number;
-  //sources = SOURCES;
-  sources: any;
+  sources: ISource[];
   articles: any = [];
   previousNews: any = [];
   sourceName: string = initialSourceName;
@@ -27,21 +26,17 @@ export class NewsService {
   getSources() {
     this.apiService.getSources().subscribe(
       (sources: ISource[]) => {
-        console.log(sources);
         this.sources = sources;
       },
       (error) => console.log(error)
     )
   }
 
-  getNews(/*source*/) {
-    //console.log(this.selectedSource);
+  getNews() {
     const sourceId = this.sources[this.selectedSource].id;
     const sourceName = this.sources[this.selectedSource].name;
-    //console.log(source);
     this.apiService.getNews(sourceId).subscribe(
       (articles: INews[]) => {
-        console.log(articles);
         this.articles = articles;
         this.updatedNews.emit(articles);
         this.sourceName = sourceName;
@@ -53,7 +48,6 @@ export class NewsService {
   getLocalNews() {
     this.apiService.getLocalNews().subscribe(
       (articles: any) => {
-        console.log(articles);
         this.articles = articles;
         this.updatedNews.emit(articles);
         this.sourceName = localSourceName;
@@ -63,54 +57,38 @@ export class NewsService {
   }
 
   onCheckMyNews(checked: boolean) {
-    console.log(checked);
     if (checked) {
       this.previousNews = this.articles;
       this.previousSourceName = this.sourceName;
       this.getLocalNews();
     } else {
       if (this.selectedSource >= 0) {
-        //this.articles = this.sources[this.selectedSource];
         this.articles = this.previousNews;
         this.sourceName = this.previousSourceName;
         this.updatedSourceName.emit(this.previousSourceName);
-        //alert(this.articles);
-        //this.updatedNews.emit(this.articles);
       } else {
         this.articles = [];
         this.sourceName = initialSourceName;
         this.updatedSourceName.emit(initialSourceName);
       }
       this.updatedNews.emit(this.articles);
-      //console.log(this.selectedSource);
-      //console.log(this.articles);
     }
   }
 
-  onLoadNews(/*source*/) {
-    //console.log(this.selectedSource);
+  onLoadNews() {
     const sourceId = this.sources[this.selectedSource].id;
-    //const sourceName = this.sources[this.selectedSource].name;
-    //console.log(source);
     this.apiService.onLoadNews(sourceId).subscribe(
       (articles: any) => {
-        console.log(articles);
         this.articles = articles;
         this.updatedNews.emit(articles);
-        //this.updatedSourceName.emit(sourceName);
       }
     )
   }
 
-  //this.newsService.getNewsWithId(this.newsId);
   getNewsWithId(id: string) {
-    //let newsWithId: INews;
-    console.log(id);
     if (this.sourceName === localSourceName) {
       this.apiService.getNewsWithId(id).subscribe(
         (news: INews) => {
-          console.log('news in news service');
-          console.log(news);
           this.currentNews = news;
           this.updatedCurrentNews.emit(this.currentNews);
           
@@ -120,31 +98,20 @@ export class NewsService {
       this.currentNews = this.articles[id];
       this.updatedCurrentNews.emit(this.currentNews);
     }
-    //console.log('current news in news');
-    //console.log(this.currentNews);
-    //this.updatedCurrentNews.emit(this.currentNews);
   }
 
   updateNews(news: INews) {
     this.apiService.updateNews(news).subscribe(
-      (res: any) => {
+      () => {
         console.log('update news');
-        console.log(res);
-        //this.currentNews = news;
-        //this.updatedCurrentNews.emit(this.currentNews);
-        
       }
     );
   }
 
   addNews(news: INews) {
     this.apiService.addNews(news).subscribe(
-      (res: any) => {
+      () => {
         console.log('add news');
-        console.log(res);
-        //this.currentNews = news;
-        //this.updatedCurrentNews.emit(this.currentNews);
-        
       }
     );
   }
@@ -153,11 +120,7 @@ export class NewsService {
     this.apiService.deleteNews(id).subscribe(
       (res: any) => {
         console.log('delete news');
-        console.log(res);
-        //this.currentNews = news;
-        //this.updatedCurrentNews.emit(this.currentNews);
         this.getLocalNews();
-              
       }
     );
   }

@@ -20,8 +20,6 @@ export class NewsListComponent implements OnInit {
   ngOnInit() {}
 
   onLoadClick() {
-    //this.newsList = [...this.newsList, ...ADD_NEWS];
-    //this.newsService.onLoadNews();
     this.loadNews.emit();
   }
 }

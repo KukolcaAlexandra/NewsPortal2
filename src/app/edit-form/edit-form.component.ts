@@ -25,6 +25,7 @@ export class EditFormComponent implements OnInit {
   });
 
   ngOnInit() {
+    console.log(this.newsId);
     if (this.newsId) {
       this.news = this.newsService.currentNews;
       this.newsForm.controls.heading.setValue(this.news && this.news.title);
@@ -34,6 +35,8 @@ export class EditFormComponent implements OnInit {
       this.newsForm.controls.author.setValue(this.news && this.news.author);
 
       this.newsService.updatedCurrentNews.subscribe((news: any) => {
+        console.log('subscribe');
+        //console.log();
         this.news = news;
         this.newsForm.controls.heading.setValue(this.news.title);
         this.newsForm.controls.content.setValue(this.news.text);
@@ -43,6 +46,7 @@ export class EditFormComponent implements OnInit {
       });
     } else {
       this.publicationDate = new Date();
+      this.newsForm.controls.date.setValue(this.publicationDate);
     }
   }
 

@@ -13,7 +13,7 @@ export class FullNewsComponent implements OnInit {
   @Input() news: INews;
   @Input() newsId: any;
   title: string;
-  date: string;
+  publishedDate: string;
   description: string;
   author: string;
   url: string;
@@ -29,7 +29,7 @@ export class FullNewsComponent implements OnInit {
       this.title = news && news.title;
       this.description = news && (news.description || news.text || '');
       this.author = news && news.author;
-      this.date = news && (news.date || news.publishedAt);
+      this.publishedDate = news && (news.date || news.publishedAt);
       this.url = news && news.urlToImage;
     });
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { INews } from '../interfaces/news';
 import { NewsService } from '../news.service';
+import { localSourceName } from '../const';
 
 @Component({
   selector: 'app-news',
@@ -13,49 +14,32 @@ export class NewsComponent implements OnInit {
   @Input() source: string;
   @Input() index: number;
   id: any;
+  publishedDate: string;
   
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {
-    console.log('news desc');
-    console.log(this.news);
-    /*this.newsService.updatedCurrentNews.subscribe((news: any) => {
-      console.log('UPDATE in news component');
-      console.log(news);
-      this.news = news;
-      //this.title = news && news.title;
-      //this.description = news && (news.description || news.text || '');
-      //this.author = news && news.author;
-      //this.date = news && (news.date || news.publishedAt);
-      //this.url = news && news.urlToImage;
-    });*/
-
-    //console.log(this.index);
+    
     if (this.news._id) {
       this.id = this.news._id;
     } else {
       this.id = this.index; 
     }
-    console.log(this.id);
-    //console.log(this.);
+    this.publishedDate = this.news.publishedAt || this.news.date;
   }
 
   checkSource() {
-    if (this.source === "Local"){
+    if (this.source === localSourceName){
       return true;
     }
     return false;
   }
 
   editNews() {
-    console.log('edit news');
-    console.log(this.id);
     this.newsService.getNewsWithId(this.id);
   }
 
-  deleteNews(news: INews) {
-    console.log('delete news');
-    console.log(this.id);
+  deleteNews() {
     this.newsService.deleteNews(this.id);
   }
 }

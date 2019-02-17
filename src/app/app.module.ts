@@ -14,10 +14,8 @@ import { FullNewsComponent } from './full-news/full-news.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpComponent } from './http/http.component';
 import { HeaderComponent } from './header/header.component';
 import { KeywordsFilterPipe } from './keywords-filter.pipe';
-//import { DateFilterPipe } from './date-filter.pipe';
 
 const AppRoutes: Routes = [
   {path: '', component: MainComponent},
@@ -37,10 +35,8 @@ const AppRoutes: Routes = [
     FullNewsComponent,
     EditNewsComponent,
     EditFormComponent,
-    HttpComponent,
     HeaderComponent,
     KeywordsFilterPipe,
-    //DateFilterPipe,
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

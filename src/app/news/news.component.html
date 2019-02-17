@@ -9,12 +9,12 @@
       <a [href]="news.url" target="_blank" class="read-more">read more</a>
     </div>
   </div>
-  <div class="date-block">{{news.publishedAt}}
+  <div class="date-block">{{news.publishedAt || news.date | date:'medium'}}
   </div>
   <div *ngIf="checkSource()">
     <div class=button-group>
       <button routerLink="edit/{{id}}" (click)="editNews()">Edit</button>
-      <button (click)="deleteNews(news)">Delete</button>
+      <button (click)="deleteNews()">Delete</button>
     </div>
   </div>
 </div>

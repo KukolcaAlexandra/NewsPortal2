@@ -15,7 +15,6 @@ export class ApiService {
     return this.httpClient.get<any>(`https://newsapi.org/v2/sources?apiKey=${apiKey}`)
     .pipe(
         map((response: any) => {
-          console.log('response', response);
           return response.sources;
         })
     )
@@ -25,7 +24,6 @@ export class ApiService {
     return this.httpClient.get<INews>(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${apiKey}`)
     .pipe(
         map((response: any) => {
-          console.log('response', response);
           return response.articles;
         })
     )
@@ -33,10 +31,8 @@ export class ApiService {
 
   getLocalNews() {
     return this.httpClient.get<INews>(`http://localhost:3000/news`)
-    //return this.httpClient.get<any>(`https://epam-education.herokuapp.com/news`)
     .pipe(
         map((response: any) => {
-          console.log('response', response);
           return response;
         })
     )
@@ -46,7 +42,6 @@ export class ApiService {
     return this.httpClient.get<any>(`https://newsapi.org/v2/top-headlines?sources=${source}&page=10&pageSize=20&apiKey=${apiKey}`)
     .pipe(
         map((response: any) => {
-          console.log('response', response);
           return response.articles;
         })
     )
@@ -56,7 +51,6 @@ export class ApiService {
     return this.httpClient.get<INews>(`http://localhost:3000/news/${id}`)
     .pipe(
         map((response: any) => {
-          console.log('response', response);
           return response;
         })
     )
@@ -67,8 +61,6 @@ export class ApiService {
   }
 
   addNews(news: INews) {
-    console.log('POST');
-    console.log(news);
     return this.httpClient.post<INews>(`http://localhost:3000/news`, news)
   }
 

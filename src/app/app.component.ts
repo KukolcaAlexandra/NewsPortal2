@@ -9,13 +9,10 @@ import { NewsService } from './news.service';
 export class AppComponent {
   
   constructor(private newsService: NewsService) {
-    //alert('hello');
-    console.log(newsService);
+   
   }
 
   ngOnInit() {
   }
-
-  handleEvent(sourceIndex: number) {
-  }
+  
 }
