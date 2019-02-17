@@ -1,0 +1,19 @@
+<div class="news-block">
+  <img class="image" [src]="url">
+  <div class="text-block">
+    <h3 class="title">{{title}}</h3>
+    <div class="description-block">
+      <p class="description">{{description}}</p>
+    </div>
+    <div class="date-block">{{date}}</div>
+    <div class="date-block">{{author}}</div>
+  </div>
+  
+  <div *ngIf="checkSource()">
+    <div class=button-group>
+      <button routerLink="/edit/{{newsId}}">Edit</button>
+      <button (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+  

@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; 
+  align-items: baseline;
+  border-bottom: 1px solid #edede3;
+  height: 50px;
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 10px;
+
+}
+
+button {
+  width: 100px;
+  height: 25px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  margin-right: 60px;
+  display: inline-block;
+}
+
+select {
+  width: 150px;
+  height: 25px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  margin-right: 40px;
+  display: inline-block;
+}
+
+input[type="text"] {
+  width: 150px;
+  height: 25px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  margin-right: 3px;
+  display: inline-block;
+}
+
+label {
+  margin-right: 160px; 
+}

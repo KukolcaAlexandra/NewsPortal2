@@ -1,0 +1,19 @@
+.news-container {
+  width: 60%;
+  padding-top: 20px; 
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  width: 70%;
+  height: 40px;
+  margin-top: 20px;
+  border: none;
+}

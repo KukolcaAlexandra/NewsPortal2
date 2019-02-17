@@ -1,0 +1,6 @@
+<div class="container" (change)="onChange()">
+  <div *ngFor="let item of newsList; let ind = index" class='news-container'>
+    <app-news [news]="item" [source]="source" [index]="ind"></app-news>
+  </div>
+  <button *ngIf="showLoadButton" (click)="onLoadClick()">Load More</button>
+</div>

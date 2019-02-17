@@ -1,0 +1,48 @@
+<form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+  <div class="left">
+    <label>
+      Heading
+      <input type="text" formControlName="heading">
+    </label>
+  
+    <label>
+      Short description
+      <input type="text" formControlName="shortDescription">
+    </label>
+  
+    <label>
+      Content
+      <textarea formControlName="content"></textarea>
+    </label>
+  </div>
+  <div class="right">
+    <div class="radioGroup">
+      Image
+      <input type="radio" name="image" value="URL" checked> URL
+      <input type="radio" name="image" value="File" checked> File
+    </div>
+
+    <input class="imageInput" type="text" formControlName="image">
+       
+    <label>
+      Date
+      <input type="text" formControlName="date">
+    </label>
+
+    <label>
+      Author
+      <input type="text" formControlName="author">
+    </label>
+
+    <label>
+      Source URL
+      <input type="text" formControlName="sourceUrl">
+    </label>
+
+    <div class="buttonGroup">
+      <button (click)="save()" type="submit" [disabled]="!newsForm.valid">Save</button>
+      <button (click)="cancel()" routerLink="/">Cancel</button>
+    </div>
+
+  </div>  
+</form>

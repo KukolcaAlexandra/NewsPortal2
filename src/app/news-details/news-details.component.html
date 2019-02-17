@@ -1,0 +1,7 @@
+<div class="main-container" [ngClass]="{'active': isActive}">
+  <app-header [sourceName]="sourceName"></app-header>
+  <div class="news-container">
+    <app-full-news [newsId]="newsId" [sourceName]="sourceName"></app-full-news>
+  </div>
+</div>
+<footer>Powered by NewsAPI</footer>

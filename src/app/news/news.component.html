@@ -1,0 +1,20 @@
+<div class="news-block">
+  <img class="image" [src]="news.urlToImage">
+  <div class="text-block" routerLink="news/{{id}}">
+    <h3 class="title">{{news.title}}</h3>
+    <div class="description-block">
+      <p class="description">{{news.description || news.text}}</p>
+    </div>
+    <div class="link-block">
+      <a [href]="news.url" target="_blank" class="read-more">read more</a>
+    </div>
+  </div>
+  <div class="date-block">{{news.publishedAt}}
+  </div>
+  <div *ngIf="checkSource()">
+    <div class=button-group>
+      <button routerLink="edit/{{id}}" (click)="editNews()">Edit</button>
+      <button (click)="deleteNews(news)">Delete</button>
+    </div>
+  </div>
+</div>

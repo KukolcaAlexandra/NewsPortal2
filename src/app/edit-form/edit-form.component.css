@@ -1,0 +1,54 @@
+form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #edede3;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 20px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 20px;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.imageInput {
+  margin-bottom: 20px;
+} 
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+textarea {
+  height: 120px;
+}
+
+button {
+  width: 120px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+}
