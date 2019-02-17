@@ -45,6 +45,31 @@ export class MainComponent implements OnInit {
     //this.news = NEWS;
   }
 
+  filterNews(keywords: string[]) {
+    console.log('main filterNews');
+    console.log(keywords);
+    if (this.currentNews) {
+      const filteredList = this.currentNews.filter(news => {
+        console.log(news);
+        return keywords.some(keyword => {
+          if (news.title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+            return true;
+          }
+          if (news.description && news.description.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+            return true;
+          }
+          if (news.text && news.text.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+            return true;
+          }
+        });
+        //return value;
+      });
+      console.log('filteredList');
+      console.log(filteredList);
+      this.currentNews = filteredList;
+    }
+  }
+
   //handleEvent(sourceIndex: number) {
     /*this.currentIndex = sourceIndex;
     //this.currentNews = this.news[this.currentIndex];

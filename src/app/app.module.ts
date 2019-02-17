@@ -16,6 +16,8 @@ import { EditFormComponent } from './edit-form/edit-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpComponent } from './http/http.component';
 import { HeaderComponent } from './header/header.component';
+import { KeywordsFilterPipe } from './keywords-filter.pipe';
+//import { DateFilterPipe } from './date-filter.pipe';
 
 const AppRoutes: Routes = [
   {path: '', component: MainComponent},
@@ -37,6 +39,8 @@ const AppRoutes: Routes = [
     EditFormComponent,
     HttpComponent,
     HeaderComponent,
+    KeywordsFilterPipe,
+    //DateFilterPipe,
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

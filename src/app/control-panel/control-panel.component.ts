@@ -11,6 +11,7 @@ import { NewsService } from '../news.service';
 export class ControlPanelComponent implements OnInit {
   @Output() selectedSource = new EventEmitter<number>();
   @Output() localSource = new EventEmitter<boolean>();
+  @Output() filterNews = new EventEmitter<string[]>();
   
   //sources: ISource[] = SOURCES;
   
@@ -65,6 +66,19 @@ export class ControlPanelComponent implements OnInit {
 
   onFilterClick() {
     console.log('filter');
+    console.log(this.inputKeyWord.value);
+    //const key: string[] = this.inputKeyWord.value.split(' ').join('');
+    //console.log(key);
+    const keywordsWithSpaces: string[] = this.inputKeyWord.value.split(' ');
+    const keywords = keywordsWithSpaces.filter(value => {
+      console.log(value);
+      if (value.length)
+        return true;
+      return false;
+    })
+    console.log(`key = ${keywords}`);
+    console.log(keywords);
+    this.filterNews.emit(keywords);
   }
 
   onCheckMyNews(checked: boolean) {

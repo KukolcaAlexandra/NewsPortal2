@@ -26,7 +26,7 @@
        
     <label>
       Date
-      <input type="text" formControlName="date">
+      <input type="text" formControlName="date" [value]="publicationDate |  date:'shortDate'">
     </label>
 
     <label>

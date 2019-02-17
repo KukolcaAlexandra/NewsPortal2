@@ -50,5 +50,6 @@ export class FullNewsComponent implements OnInit {
   onDelete() {
     console.log('delete');
     console.log(this.newsId);
+    this.newsService.deleteNews(this.newsId);
   }
 }

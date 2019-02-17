@@ -67,6 +67,8 @@ export class ApiService {
   }
 
   addNews(news: INews) {
+    console.log('POST');
+    console.log(news);
     return this.httpClient.post<INews>(`http://localhost:3000/news`, news)
   }
 

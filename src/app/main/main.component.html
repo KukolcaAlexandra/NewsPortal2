@@ -1,6 +1,6 @@
 <div class="main-container" [ngClass]="{'active': isActive}">
   <app-header [sourceName]="sourceName"></app-header>
-  <app-control-panel></app-control-panel>
+  <app-control-panel (filterNews)="filterNews($event);"></app-control-panel>
   <div class="list">
     <app-news-list [newsList]="currentNews" [source]="sourceName" [showLoadButton]="showLoadButton"></app-news-list>
   </div>
