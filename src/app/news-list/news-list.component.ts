@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { INews } from '../interfaces/news';
 import { NEWS, ADD_NEWS } from '../mock-news';
 import { NewsService } from '../news.service';
@@ -12,6 +12,7 @@ export class NewsListComponent implements OnInit {
   @Input() newsList: INews[] = NEWS[0];
   @Input() source: string;
   @Input() showLoadButton: boolean;
+  @Output() loadNews = new EventEmitter<void>();
   
   showList: boolean = true;
   constructor(private newsService: NewsService) { }
@@ -20,6 +21,7 @@ export class NewsListComponent implements OnInit {
 
   onLoadClick() {
     //this.newsList = [...this.newsList, ...ADD_NEWS];
-    this.newsService.onLoadNews();
+    //this.newsService.onLoadNews();
+    this.loadNews.emit();
   }
 }

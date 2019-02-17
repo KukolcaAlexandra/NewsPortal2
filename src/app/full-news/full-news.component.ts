@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { INews } from '../interfaces/news';
 import { NewsService } from '../news.service';
+import { localSourceName } from '../const';
 
 @Component({
   selector: 'app-full-news',
@@ -24,8 +25,6 @@ export class FullNewsComponent implements OnInit {
 
     
     this.newsService.updatedCurrentNews.subscribe((news: any) => {
-      console.log('UPDATE');
-      console.log(news);
       this.news = news;
       this.title = news && news.title;
       this.description = news && (news.description || news.text || '');
@@ -35,21 +34,16 @@ export class FullNewsComponent implements OnInit {
     });
 
     this.newsService.getNewsWithId(this.newsId);
-    
-    //console.log(this.news);
-   
   }
 
   checkSource() {
-    if (this.sourceName === "Local"){
+    if (this.sourceName === localSourceName){
       return true;
     }
     return false;
   }
 
   onDelete() {
-    console.log('delete');
-    console.log(this.newsId);
     this.newsService.deleteNews(this.newsId);
   }
 }

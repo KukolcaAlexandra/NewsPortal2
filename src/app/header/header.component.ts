@@ -9,7 +9,7 @@ import { NewsService } from '../news.service';
 export class HeaderComponent implements OnInit {
 
   @Input() sourceName: string;
-  //sourceName: string;
+  
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {

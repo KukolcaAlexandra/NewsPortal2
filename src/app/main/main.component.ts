@@ -9,28 +9,26 @@ import { initialSourceName, localSourceName } from '../const';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  //providers: [NewsService]
 })
 
 export class MainComponent implements OnInit {
 
   title = 'newsPortal';
-  //sources: ISource[];
   currentSource: ISource;
   sourceName: string = initialSourceName;
-  news: INews[][];
+  news: INews[];
   currentNews: INews[];
   localSource: INews[];
   currentIndex: number;
   showLoadButton: boolean = false;
+  newsCount: number = 5;
 
   constructor(private newsService: NewsService) {}
 
   ngOnInit() {
-    //this.sources = SOURCES;
-    //this.newsService.getSources();
     this.newsService.updatedNews.subscribe((news: any) => {
-      this.currentNews = news;
+      this.news = news;
+      this.currentNews = this.news.slice(0, this.newsCount);
     });
     this.newsService.updatedSourceName.subscribe((sourceName: string) => {
       this.sourceName = sourceName;
@@ -40,17 +38,11 @@ export class MainComponent implements OnInit {
         this.showLoadButton = true;
       }
     });
-    //this.localSource = LOCAL_NEWS;
-    //this.sourceName = 'Source Name'; 
-    //this.news = NEWS;
   }
 
   filterNews(keywords: string[]) {
-    console.log('main filterNews');
-    console.log(keywords);
     if (this.currentNews) {
       const filteredList = this.currentNews.filter(news => {
-        console.log(news);
         return keywords.some(keyword => {
           if (news.title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
             return true;
@@ -62,46 +54,26 @@ export class MainComponent implements OnInit {
             return true;
           }
         });
-        //return value;
       });
-      console.log('filteredList');
-      console.log(filteredList);
       this.currentNews = filteredList;
     }
+
+    if (keywords.length === 0) {
+      this.currentNews = this.news.slice(0, this.newsCount);
+    }
+
   }
 
-  //handleEvent(sourceIndex: number) {
-    /*this.currentIndex = sourceIndex;
-    //this.currentNews = this.news[this.currentIndex];
-    //this.currentSource = this.sources[this.currentIndex];
-    this.currentSource = this.newsService.sources[this.currentIndex];
-    //this.currentNews = this.newsService.articles;
-    this.sourceName = this.currentSource.name;*/
-    //this.showLoadButton = true;
-  //}
-
-  //onCheck(checked: boolean) {
-    //console.log(this.currentIndex);
-  //  if (checked) {
-      /*this.sourceName = "Local";
-      //this.currentNews = this.localSource;
-      //this.currentNews = this.newsService.localNews*/
-      //this.showLoadButton = false;
-      
-  //  } else {
-  //    if (this.currentIndex >= 0) {
-        /*console.log(this.currentIndex);
-        this.currentNews = this.news[this.currentIndex];
-        //this.currentSource = this.sources[this.currentIndex];
-        this.currentSource = this.newsService.sources[this.currentIndex];
-        this.sourceName = this.currentSource.name;*/
-        //this.showLoadButton = true;
-//      } else {
-        /*this.sourceName = "Source Name";
-        this.currentNews = [];*/
-        //this.showLoadButton = false;
-//      }
-//    }
-//    console.log(`showLoadButton = ${this.showLoadButton}`);
-//  }
+  loadNews() {
+    if (this.newsCount === 5) {
+      this.newsCount += 5;
+      this.currentNews = this.news.slice(0, this.newsCount);
+    }
+  }
+  
+  updateCount() {
+    if (this.newsCount !== 5) {
+      this.newsCount = 5;
+    }
+  }
 }

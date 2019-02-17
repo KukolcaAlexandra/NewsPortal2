@@ -1,6 +1,5 @@
 <div class="container">
   <select [formControl]="comboBox" (change)="onChange($event.target.selectedIndex)">
-    <!--<option value="" disabled="true" [selected]=true hidden>Select Source</option>-->
     <option *ngFor="let source of newsService.sources" [ngValue]="source">
       {{source.name}}
     </option>
