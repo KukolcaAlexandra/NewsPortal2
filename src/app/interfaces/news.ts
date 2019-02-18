@@ -2,7 +2,7 @@ export interface IShortSource {
   id: string;
   name: string;
 }
-    
+
 export interface INews {
   author: string;
   title: string;
@@ -12,10 +12,10 @@ export interface INews {
   source?: IShortSource;
   url?: string;
   urlToImage?: string;
-  id?: string,
+  id?: string;
   _id?: string;
-  text?: string,
-  date?: string,
+  text?: string;
+  date?: string;
 }
 
 export interface ISource {

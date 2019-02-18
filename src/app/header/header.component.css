@@ -1,5 +1,10 @@
 header {
   background-color: #000;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 5px;
 }
     
 h1 {
@@ -8,3 +13,10 @@ h1 {
   text-align: center;
   padding-top: 15px;
 }
+
+button {
+  width: 60px;
+  height: 25px;
+  border-radius: 7px;
+}
+

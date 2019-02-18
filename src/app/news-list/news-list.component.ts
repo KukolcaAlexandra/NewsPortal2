@@ -13,8 +13,8 @@ export class NewsListComponent implements OnInit {
   @Input() source: string;
   @Input() showLoadButton: boolean;
   @Output() loadNews = new EventEmitter<void>();
-  
-  showList: boolean = true;
+
+  showList = true;
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {}

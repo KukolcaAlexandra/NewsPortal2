@@ -19,9 +19,8 @@ export class NewsService {
   articles: any = [];
   previousNews: any = [];
   sourceName: string = initialSourceName;
-  previousSourceName: string = '';
+  previousSourceName: string;
   currentNews: INews;
-  
 
   getSources() {
     this.apiService.getSources().subscribe(
@@ -29,7 +28,7 @@ export class NewsService {
         this.sources = sources;
       },
       (error) => console.log(error)
-    )
+    );
   }
 
   getNews() {
@@ -42,7 +41,7 @@ export class NewsService {
         this.sourceName = sourceName;
         this.updatedSourceName.emit(sourceName);
       }
-    )
+    );
   }
 
   getLocalNews() {
@@ -53,7 +52,7 @@ export class NewsService {
         this.sourceName = localSourceName;
         this.updatedSourceName.emit(localSourceName);
       }
-    )
+    );
   }
 
   onCheckMyNews(checked: boolean) {
@@ -82,7 +81,7 @@ export class NewsService {
         this.articles = articles;
         this.updatedNews.emit(articles);
       }
-    )
+    );
   }
 
   getNewsWithId(id: string) {
@@ -91,7 +90,6 @@ export class NewsService {
         (news: INews) => {
           this.currentNews = news;
           this.updatedCurrentNews.emit(this.currentNews);
-          
         }
       );
     } else {
@@ -121,6 +119,15 @@ export class NewsService {
       (res: any) => {
         console.log('delete news');
         this.getLocalNews();
+      }
+    );
+  }
+
+  logIn() {
+    this.apiService.logIn().subscribe(
+      (res: any) => {
+        console.log('log in');
+        console.log(res);
       }
     );
   }

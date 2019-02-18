@@ -20,8 +20,8 @@ export class MainComponent implements OnInit {
   currentNews: INews[];
   localSource: INews[];
   currentIndex: number;
-  showLoadButton: boolean = false;
-  newsCount: number = 5;
+  showLoadButton = false;
+  newsCount = 5;
 
   constructor(private newsService: NewsService) {}
 
@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
     });
     this.newsService.updatedSourceName.subscribe((sourceName: string) => {
       this.sourceName = sourceName;
-      if (sourceName === localSourceName || sourceName === initialSourceName) {
+      if (sourceName === initialSourceName) {
         this.showLoadButton = false;
       } else {
         this.showLoadButton = true;
@@ -65,12 +65,12 @@ export class MainComponent implements OnInit {
   }
 
   loadNews() {
-    if (this.newsCount === 5) {
+    if (this.newsCount >= 5) {
       this.newsCount += 5;
       this.currentNews = this.news.slice(0, this.newsCount);
     }
   }
-  
+
   updateCount() {
     if (this.newsCount !== 5) {
       this.newsCount = 5;

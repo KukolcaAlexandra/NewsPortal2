@@ -23,7 +23,6 @@ export class FullNewsComponent implements OnInit {
   ngOnInit() {
     this.news = this.newsService.currentNews;
 
-    
     this.newsService.updatedCurrentNews.subscribe((news: any) => {
       this.news = news;
       this.title = news && news.title;
@@ -37,7 +36,7 @@ export class FullNewsComponent implements OnInit {
   }
 
   checkSource() {
-    if (this.sourceName === localSourceName){
+    if (this.sourceName === localSourceName) {
       return true;
     }
     return false;

@@ -9,13 +9,17 @@ import { NewsService } from '../news.service';
 export class HeaderComponent implements OnInit {
 
   @Input() sourceName: string;
-  
+
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {
     this.newsService.updatedSourceName.subscribe((sourceName: string) => {
       this.sourceName = sourceName;
     });
+  }
+
+  logIn() {
+    this.newsService.logIn();
   }
 
 }

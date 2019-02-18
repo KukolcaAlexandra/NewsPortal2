@@ -30,7 +30,7 @@ select {
 }
 
 input[type="text"] {
-  width: 150px;
+  width: 200px;
   height: 25px;
   border-radius: 3px;
   border: 1px solid #ddd;
@@ -40,4 +40,9 @@ input[type="text"] {
 
 label {
   margin-right: 160px; 
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
 }

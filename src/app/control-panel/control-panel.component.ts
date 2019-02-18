@@ -10,7 +10,7 @@ import { NewsService } from '../news.service';
 export class ControlPanelComponent implements OnInit {
   @Output() filterNews = new EventEmitter<string[]>();
   @Output() updateCount = new EventEmitter<void>();
-  
+
   constructor(private newsService: NewsService) { }
 
   heading = new FormControl('');
@@ -35,10 +35,11 @@ export class ControlPanelComponent implements OnInit {
   onFilterClick() {
     const keywordsWithSpaces: string[] = this.inputKeyWord.value.split(' ');
     const keywords = keywordsWithSpaces.filter(value => {
-      if (value.length)
+      if (value.length) {
         return true;
+      }
       return false;
-    })
+    });
     this.filterNews.emit(keywords);
   }
 
@@ -46,6 +47,7 @@ export class ControlPanelComponent implements OnInit {
     this.newsService.onCheckMyNews(checked);
     if (checked) {
       this.comboBox.disable();
+      this.updateCount.emit();
     } else {
       this.comboBox.enable();
     }

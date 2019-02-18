@@ -10,10 +10,10 @@ import { localSourceName } from '../const';
   styleUrls: ['./news-details.component.css']
 })
 export class NewsDetailsComponent implements OnInit {
-  
+
   public newsId: string;
   sourceName: string;
- 
+
   constructor(
     private route: ActivatedRoute,
     private newsService: NewsService
@@ -24,7 +24,7 @@ export class NewsDetailsComponent implements OnInit {
     this.newsService.updatedSourceName.subscribe((sourceName: string) => {
       this.sourceName = sourceName;
     });
-    
+
     this.sourceName = this.newsService.sourceName;
   }
 

@@ -7,12 +7,11 @@ import { NewsService } from './news.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  constructor(private newsService: NewsService) {
-   
-  }
+
+  constructor(private newsService: NewsService) { }
 
   ngOnInit() {
+
   }
-  
+
 }

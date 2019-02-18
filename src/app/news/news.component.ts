@@ -15,21 +15,21 @@ export class NewsComponent implements OnInit {
   @Input() index: number;
   id: any;
   publishedDate: string;
-  
+
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {
-    
+
     if (this.news._id) {
       this.id = this.news._id;
     } else {
-      this.id = this.index; 
+      this.id = this.index;
     }
     this.publishedDate = this.news.publishedAt || this.news.date;
   }
 
   checkSource() {
-    if (this.source === localSourceName){
+    if (this.source === localSourceName) {
       return true;
     }
     return false;

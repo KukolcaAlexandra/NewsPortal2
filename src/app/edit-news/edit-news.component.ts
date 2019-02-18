@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditNewsComponent implements OnInit {
 
   public newsId: string;
-  title: string = "Add";
+  title = 'Add';
 
   constructor(private route: ActivatedRoute) { }
 

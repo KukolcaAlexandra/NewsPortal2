@@ -1,2 +1,2 @@
-export const localSourceName: string = 'Local';
-export const initialSourceName: string = 'Source Name'; 
+export const localSourceName = 'Local';
+export const initialSourceName = 'Source Name';

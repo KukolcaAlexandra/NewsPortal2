@@ -13,7 +13,8 @@ export class EditFormComponent implements OnInit {
   news: INews;
   constructor(private newsService: NewsService) { }
   publicationDate: Date;
-  
+  dataString: string;
+
   newsForm = new FormGroup({
     heading: new FormControl('', [Validators.required]),
     shortDescription: new FormControl(''),
@@ -25,24 +26,18 @@ export class EditFormComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log(this.newsId);
     if (this.newsId) {
       this.news = this.newsService.currentNews;
       this.newsForm.controls.heading.setValue(this.news && this.news.title);
       this.newsForm.controls.content.setValue(this.news && this.news.text);
-      this.publicationDate = this.news && new Date(this.news.date);
-      this.newsForm.controls.date.setValue(this.publicationDate);
+      this.publicationDate = this.news && this.news.date ? new Date(this.news.date) : null;
       this.newsForm.controls.author.setValue(this.news && this.news.author);
 
       this.newsService.updatedCurrentNews.subscribe((news: any) => {
-        console.log('subscribe');
-        //console.log();
-        this.news = news;
-        this.newsForm.controls.heading.setValue(this.news.title);
-        this.newsForm.controls.content.setValue(this.news.text);
-        this.publicationDate = this.news.date ? new Date(this.news.date) : null;
-        this.newsForm.controls.date.setValue(this.publicationDate);
-        this.newsForm.controls.author.setValue(this.news.author);
+        this.newsForm.controls.heading.setValue(news.title);
+        this.newsForm.controls.content.setValue(news.text);
+        this.publicationDate = news.date ? new Date(news.date) : null;
+        this.newsForm.controls.author.setValue(news.author);
       });
     } else {
       this.publicationDate = new Date();
@@ -56,7 +51,7 @@ export class EditFormComponent implements OnInit {
       text: this.newsForm.controls.content.value,
       date: new Date(this.newsForm.controls.date.value).toString(),
       author: this.newsForm.controls.author.value,
-    }
+    };
     if (this.newsId) {
       news._id = this.newsId;
       news.id = this.news.id;

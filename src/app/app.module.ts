@@ -9,7 +9,7 @@ import { NewsComponent } from './news/news.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { MainComponent } from './main/main.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FullNewsComponent } from './full-news/full-news.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
