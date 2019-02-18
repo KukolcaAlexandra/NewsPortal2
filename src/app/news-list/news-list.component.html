@@ -1,4 +1,4 @@
-<div class="container" (change)="onChange()">
+<div class="container">
   <div *ngFor="let item of newsList; let ind = index" class='news-container'>
     <app-news [news]="item" [source]="source" [index]="ind"></app-news>
   </div>

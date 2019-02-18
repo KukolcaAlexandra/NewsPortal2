@@ -11,6 +11,7 @@ export class NewsService {
 
   constructor(private apiService: ApiService) { }
 
+  public updatedSources: EventEmitter<any> = new EventEmitter();
   public updatedNews: EventEmitter<any> = new EventEmitter();
   public updatedSourceName: EventEmitter<string> = new EventEmitter();
   public updatedCurrentNews: EventEmitter<INews> = new EventEmitter();
@@ -26,6 +27,7 @@ export class NewsService {
     this.apiService.getSources().subscribe(
       (sources: ISource[]) => {
         this.sources = sources;
+        this.updatedSources.emit(sources);
       },
       (error) => console.log(error)
     );

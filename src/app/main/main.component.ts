@@ -64,14 +64,14 @@ export class MainComponent implements OnInit {
 
   }
 
-  loadNews() {
+  loadNews(event: any) {
     if (this.newsCount >= 5) {
       this.newsCount += 5;
       this.currentNews = this.news.slice(0, this.newsCount);
     }
   }
 
-  updateCount() {
+  updateCount(event: any) {
     if (this.newsCount !== 5) {
       this.newsCount = 5;
     }

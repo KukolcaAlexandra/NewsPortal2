@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { NewsService } from '../news.service';
+import { ISource } from '../interfaces/news';
 
 @Component({
   selector: 'app-control-panel',
@@ -10,7 +11,7 @@ import { NewsService } from '../news.service';
 export class ControlPanelComponent implements OnInit {
   @Output() filterNews = new EventEmitter<string[]>();
   @Output() updateCount = new EventEmitter<void>();
-
+  sources: ISource[];
   constructor(private newsService: NewsService) { }
 
   heading = new FormControl('');
@@ -24,6 +25,10 @@ export class ControlPanelComponent implements OnInit {
 
   ngOnInit() {
     this.newsService.getSources();
+    this.sources = this.newsService.sources;
+    this.newsService.updatedSources.subscribe((sources: any) => {
+      this.sources = sources;
+    });
   }
 
   onChange(selectedIndex: number) {
