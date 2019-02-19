@@ -38,6 +38,7 @@ export class EditFormComponent implements OnInit {
         this.newsForm.controls.content.setValue(news.text);
         this.publicationDate = news.date ? new Date(news.date) : null;
         this.newsForm.controls.author.setValue(news.author);
+        this.news = news;
       });
     } else {
       this.publicationDate = new Date();
@@ -46,10 +47,14 @@ export class EditFormComponent implements OnInit {
   }
 
   save() {
+    let date = new Date(this.newsForm.controls.date.value);
+    if (date.toString() === 'Invalid Date') {
+      date = new Date();
+    }
     const news: INews = {
       title: this.newsForm.controls.heading.value,
       text: this.newsForm.controls.content.value,
-      date: new Date(this.newsForm.controls.date.value).toString(),
+      date: date.toString(),
       author: this.newsForm.controls.author.value,
     };
     if (this.newsId) {
