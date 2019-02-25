@@ -3,6 +3,7 @@ import { INews } from '../interfaces/news';
 import { NewsService } from '../news.service';
 import { localSourceName } from '../const';
 
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -26,6 +27,9 @@ export class NewsComponent implements OnInit {
       this.id = this.index;
     }
     this.publishedDate = this.news.publishedAt || this.news.date;
+    if (!this.news.urlToImage) {
+      this.news.urlToImage = './assets/def.jpeg';
+    }
   }
 
   checkSource() {
